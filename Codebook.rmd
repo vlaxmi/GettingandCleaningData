@@ -1,0 +1,135 @@
+Codebook
+========================================================
+
+The purpose of this project is to demonstrate an ability to collect, work with, and clean a data set.
+The outcome is to prepare tidy data that can be used for later analysis.
+
+One of the most exciting areas in all of data science right now is wearable computing.  
+Companies like Fitbit, Nike, and Jawbone Up are racing to develop the most advanced algorithms to attract new users. The data linked to from the course website represent data collected from the accelerometers from the Samsung Galaxy S smartphone. A full description is available at the site where the data was obtained: 
+
+http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones 
+
+Here are the datasets for the project: 
+
+https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip
+
+Codebook for this program : variables and logic used in this program
+--------------------------------------------------------------------
+
+Step 1: Complete train data set (i.e. of 70% volunteers): after combining X_train.txt, Y_train.txt & Subject_train.txt
+
+Here is a summary of train.txt
+
+--------------------------------------------------------------------------------------------------------------
+
+```{r}
+## number of columns in traindataset
+ncol(traindataset)
+## number of rows in traindataset
+nrow(traindataset)
+```
+
+
+Step2: Complete test data set (i.e. of 30% volunteers): after combining X_test.txt, Y_test.txt & Subject_test.txt
+
+Here is a summary of test.txt with 561 columns
+
+--------------------------------------------------------------------------------------------------------------
+
+```{r}
+## number of columns in testdataset
+ncol(testdataset)
+## number of rows in testdataset
+nrow(testdataset)
+```
+
+Step3: Extract the features names from the feature.txt
+
+Here is all list of features names
+
+--------------------------------------------------------------------------------------------------------------
+
+```{r}
+str(as.character(features_names))
+```
+
+Step 4 : Merge two data sets to create full data set (i.e. of 100% Volunteers)
+
+Step 5 : Add labels from features.txt
+
+
+--------------------------------------------------------------------------------------------------------------
+
+```{r}
+## number of columns in fulldataset
+ncol(fulldataset)
+## number of rows in fulldataset
+nrow(fulldataset)
+```
+
+
+Step 6: Extracts only the measurements on the mean and standard deviation for each measurement
+
+Step 7: Uses descriptive activity names to name the activities in the data set
+
+--------------------------------------------------------------------------------------------------------------
+```{r}
+## number of columns in subsetdataset
+ncol(subsetdataset)
+## number of rows in subsetdataset
+nrow(subsetdataset)
+```
+
+
+Step 8 : Creates a second, independent tidy data set 
+
+Tidy data set with the average of each variable for each activity and each subject
+
+--------------------------------------------------------------------------------------------------------------
+```{r}
+## number of columns in tidydataset
+ncol(tidydataset)
+## number of rows in tidydataset
+nrow(tidydataset)
+## summary
+summary(tidydataset)
+```
+
+Step 9: Tidy Variable name & Description
+
+--------------------------------------------------------------------------------------------------------------
+```{r}
+##output Data set Fields 
+    
+tidydataset_full_desc= c("Subject ID", "Activity ", "Avg. body accel. (X)", "Avg. body accel. (Y)","Avg. body accel. (Z)",
+                         "Std. body accel. (X)","Std. body accel. (Y)","Std. body accel. (Z)","Avg. gravity accel. (X)",    
+                         "Avg. gravity accel. (Y)","Avg. gravity accel. (Z)", "Std. gravity accel. (X)","Std. gravity accel. (Y)",
+                         "Std. gravity accel. (Z)","Avg. body accel. linear jerk (X)","Avg. body accel. linear jerk (Y)",
+                         "Avg. body accel. linear jerk (Z)","Std. body accel. linear jerk (X)","Std. body accel. linear jerk (Y)",
+                         "Std. body accel. linear jerk (Z)","Avg. body accel. angular (X)","Avg. body accel. angular (Y)",
+                         "Avg. body accel. angular (Z)","Std. body accel. angular (X)","Std. body accel. angular (Y)",
+                         "Std. body accel. angular (Z)","Avg. body accel. angular jerk (X)","Avg. body accel. angular jerk (Y)",
+                         "Avg. body accel. angular jerk (Z)", "Std. body accel. angular jerk (X)","Std. body accel. angular jerk (Y)",
+                         "Std. body accel. angular jerk (Z)","Avg. body accel. magnitude Euc. norm","Std. body accel. magnitude Euc. norm",
+                         "Avg. gravity accel. magnitude Euc. norm","Std. gravity accel. magnitude Euc. norm","Avg. body accel. jerk magnitude Euc. norm",
+                         "Std. body accel. jerk magnitude Euc. norm","Avg. body accel. angular magnitude Euc. norm",
+                         "Std. body accel. angular magnitude Euc. norm","Avg. body accel. angular jerk magnitude Euc. norm",
+                         "Std. body accel. angular jerk magnitude Euc. norm","Avg. body accel. FFT (X)","Avg. body accel. FFT (Y)",
+                         "Avg. body accel. FFT (Z)", "Std. body accel. FFT (X)","Std. body accel. FFT (Y)","Std. body accel. FFT (Z)",
+                         "Avg. body accel. frequency FFT (X)","Avg. body accel. frequency FFT (Y)","Avg. body accel. frequency FFT (Z)",  
+                         "Avg. body accel. jerk FFT (X)","Avg. body accel. jerk FFT (Y)","Avg. body accel. jerk FFT (Z)",
+                         "Std. body accel. jerk FFT(X)","Std. body accel. jerk FFT(Y)","Std. body accel. jerk FFT(Z)", 
+                         "Avg. body accel. jerk frequency FFT (X)","Avg. body accel. jerk frequency FFT (Y)",
+                         "Avg. body accel. jerk frequency FFT (Z)","Avg. body accel. angular FFT (X)","Avg. body accel. angular FFT (Y)",
+                         "Avg. body accel. angular FFT (Z)","Std. body accel. angular FFT (X)","Std. body accel. angular FFT (Y)",
+                         "Std. body accel. angular FFT (Z)","Avg. body accel. angular frequency FFT (X)","Avg. body accel. angular frequency FFT (Y)",
+                         "Avg. body accel. angular frequency FFT (Z)","Avg. body accel. mangintude FFT","Std. body accel. mangintude FFT",
+                         "Avg. body accel. frequency magnitude FFT","Avg. body accel. jerk magnitude FFT","Std. body accel. jerk mangintude FFT",
+                         "Avg. body accel. jerk frequency magnitude FFT","Avg. body accel. angular mangnitude FFT",
+                         "Std. body accel. angular mangnitude FFT","Avg. body accel. angular frequency mangintude FFT",
+                         "Avg. body accel. angular jerk mangnitude FFT","Std. body accel. angular jerk mangnitude FFT",
+                         "Avg. body accel. angular frequency mangintude FFT")
+
+vartable <- function(x,y) { paste (x, y, sep = " == ")}
+vartable(names(tidydataset), tidydataset_full_desc)
+```
